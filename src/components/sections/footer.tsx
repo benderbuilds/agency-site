@@ -2,40 +2,36 @@ import { SITE, FOOTER } from "@/lib/constants";
 
 export default function Footer() {
   return (
-    <footer className="relative border-t border-white/5 px-6 py-20">
-      <div className="mx-auto grid max-w-7xl gap-16 md:grid-cols-3">
-        {/* Brand */}
+    <footer className="bg-dark px-6 py-16 lg:px-8">
+      <div className="mx-auto grid max-w-7xl gap-12 md:grid-cols-3">
         <div>
-          <div className="flex items-center gap-3">
-            <div className="flex h-8 w-8 items-center justify-center rounded-lg border border-cyan/20 bg-cyan/5">
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <div className="flex items-center gap-2.5">
+            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-white/10">
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
                 <path
-                  d="M8 1L14.5 4.75V12.25L8 16L1.5 12.25V4.75L8 1Z"
-                  stroke="currentColor"
-                  strokeWidth="1.5"
-                  className="text-cyan"
+                  d="M9 2L15 5.5V12.5L9 16L3 12.5V5.5L9 2Z"
+                  fill="white"
+                  fillOpacity="0.9"
                 />
-                <circle cx="8" cy="8.5" r="2" fill="currentColor" className="text-cyan" />
               </svg>
             </div>
-            <span className="text-lg font-bold">{SITE.name}</span>
+            <span className="text-lg font-bold text-white">{SITE.name}</span>
           </div>
-          <p className="mt-4 max-w-xs text-sm leading-relaxed text-muted">
+          <p className="mt-4 max-w-xs text-sm leading-relaxed text-dark-muted">
             {FOOTER.tagline}
           </p>
         </div>
 
-        {/* Links */}
         <div>
-          <div className="font-[family-name:var(--font-mono)] text-xs font-medium uppercase tracking-widest text-muted">
-            Navigation
+          <div className="text-xs font-semibold uppercase tracking-wider text-dark-muted">
+            Quick Links
           </div>
-          <ul className="mt-5 flex flex-col gap-3">
+          <ul className="mt-4 flex flex-col gap-3">
             {FOOTER.links.map((l) => (
               <li key={l.href}>
                 <a
                   href={l.href}
-                  className="text-sm text-muted transition-colors hover:text-foreground"
+                  className="text-sm text-dark-muted transition-colors hover:text-white"
                 >
                   {l.label}
                 </a>
@@ -44,29 +40,23 @@ export default function Footer() {
           </ul>
         </div>
 
-        {/* Contact */}
         <div>
-          <div className="font-[family-name:var(--font-mono)] text-xs font-medium uppercase tracking-widest text-muted">
+          <div className="text-xs font-semibold uppercase tracking-wider text-dark-muted">
             Contact
           </div>
           <a
             href={`mailto:${FOOTER.email}`}
-            className="mt-5 inline-block text-sm text-cyan transition-opacity hover:opacity-80"
+            className="mt-4 inline-block text-sm text-white transition-opacity hover:opacity-80"
           >
             {FOOTER.email}
           </a>
         </div>
       </div>
 
-      <div className="mx-auto mt-16 max-w-7xl border-t border-white/5 pt-8">
-        <div className="flex flex-col items-center justify-between gap-4 sm:flex-row">
-          <span className="font-[family-name:var(--font-mono)] text-xs text-muted">
-            &copy; {new Date().getFullYear()} {SITE.name}. All rights reserved.
-          </span>
-          <span className="font-[family-name:var(--font-mono)] text-xs text-muted/50">
-            Built with precision.
-          </span>
-        </div>
+      <div className="mx-auto mt-12 max-w-7xl border-t border-white/10 pt-8">
+        <span className="text-xs text-dark-muted">
+          &copy; {new Date().getFullYear()} {SITE.name}. All rights reserved.
+        </span>
       </div>
     </footer>
   );

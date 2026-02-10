@@ -4,31 +4,42 @@ import { motion } from "framer-motion";
 import { TESTIMONIALS } from "@/lib/constants";
 import { fadeInUp, staggerContainer, scaleIn } from "@/lib/animations";
 
+const avatarColors = [
+  "bg-blue-100 text-blue-700",
+  "bg-violet-100 text-violet-700",
+  "bg-amber-100 text-amber-700",
+];
+
 export default function Testimonials() {
   return (
-    <section id="testimonials" className="relative scroll-mt-20 px-6 py-28 md:py-36">
-      <div className="section-divider mb-28" />
-
+    <section
+      id="testimonials"
+      className="relative scroll-mt-20 px-6 py-24 md:py-32 lg:px-8"
+    >
       <div className="mx-auto max-w-7xl">
         <motion.div
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
           variants={staggerContainer}
+          className="text-center"
         >
-          <motion.div variants={fadeInUp} className="flex justify-center">
-            <span className="section-label">Social Proof</span>
-          </motion.div>
+          <motion.p
+            variants={fadeInUp}
+            className="text-sm font-semibold uppercase tracking-wider text-primary"
+          >
+            Testimonials
+          </motion.p>
           <motion.h2
             variants={fadeInUp}
-            className="text-center text-4xl font-extrabold tracking-tight md:text-6xl"
+            className="mt-3 text-3xl font-extrabold tracking-tight text-foreground md:text-5xl"
           >
-            What Clients <span className="gradient-text">Say</span>
+            What Clients Say
           </motion.h2>
         </motion.div>
 
         <motion.div
-          className="mt-20 grid gap-6 md:grid-cols-3"
+          className="mt-16 grid gap-6 md:grid-cols-3"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
@@ -38,40 +49,46 @@ export default function Testimonials() {
             <motion.div
               key={t.author}
               variants={scaleIn}
-              className="glass-card flex flex-col justify-between p-8 md:p-10"
+              className="flex flex-col justify-between rounded-2xl border border-border bg-white p-8 shadow-sm transition-shadow hover:shadow-md"
             >
-              {/* Large quote mark */}
               <div>
-                <svg
-                  width="40"
-                  height="32"
-                  viewBox="0 0 40 32"
-                  fill="none"
-                  className="mb-6 opacity-20"
-                >
-                  <path
-                    d="M0 20.8C0 27.2 4 32 9.6 32c4.4 0 8-3.2 8-7.6 0-4-3.2-7.2-7.2-7.2-.8 0-1.6.4-2 .4C9.2 10 14 4.4 18.4 2.4L15.2 0C6.4 4 0 12 0 20.8zm21.6 0C21.6 27.2 25.6 32 31.2 32c4.4 0 8-3.2 8-7.6 0-4-3.2-7.2-7.2-7.2-.8 0-1.6.4-2 .4.8-7.6 5.6-13.2 10-15.2L36.8 0C28 4 21.6 12 21.6 20.8z"
-                    fill="currentColor"
-                    className="text-cyan"
-                  />
-                </svg>
+                {/* Stars */}
+                <div className="mb-4 flex gap-0.5">
+                  {[...Array(5)].map((_, j) => (
+                    <svg
+                      key={j}
+                      width="16"
+                      height="16"
+                      viewBox="0 0 16 16"
+                      className="text-amber-400"
+                    >
+                      <path
+                        fill="currentColor"
+                        d="M8 0l2.47 4.88L16 5.73l-3.95 3.93L12.94 16 8 13.38 3.06 16l.89-6.34L0 5.73l5.53-.85z"
+                      />
+                    </svg>
+                  ))}
+                </div>
                 <p className="text-[15px] leading-relaxed text-muted">
-                  {t.quote}
+                  &ldquo;{t.quote}&rdquo;
                 </p>
               </div>
 
-              <div className="mt-8 flex items-center gap-4 border-t border-white/5 pt-6">
-                {/* Avatar placeholder */}
-                <div className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/5 font-[family-name:var(--font-mono)] text-xs text-cyan">
+              <div className="mt-6 flex items-center gap-3 border-t border-border pt-5">
+                <div
+                  className={`flex h-10 w-10 items-center justify-center rounded-full text-xs font-bold ${avatarColors[i]}`}
+                >
                   {t.author
                     .split(" ")
                     .map((n) => n[0])
                     .join("")}
                 </div>
                 <div>
-                  <div className="text-sm font-bold">{t.author}</div>
-                  <div className="font-[family-name:var(--font-mono)] text-xs text-muted">
-                    {t.title} — {t.company}
+                  <div className="text-sm font-semibold text-foreground">
+                    {t.author}
+                  </div>
+                  <div className="text-xs text-muted">
+                    {t.title}, {t.company}
                   </div>
                 </div>
               </div>

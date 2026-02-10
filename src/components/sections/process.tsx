@@ -4,37 +4,42 @@ import { motion } from "framer-motion";
 import { PROCESS_STEPS } from "@/lib/constants";
 import { fadeInUp, staggerContainer } from "@/lib/animations";
 
-const stepColors = [
-  { ring: "border-cyan/30", text: "text-cyan", glow: "shadow-cyan/20" },
-  { ring: "border-purple/30", text: "text-purple", glow: "shadow-purple/20" },
-  { ring: "border-amber/30", text: "text-amber", glow: "shadow-amber/20" },
-  { ring: "border-cyan/30", text: "text-cyan", glow: "shadow-cyan/20" },
+const stepAccents = [
+  "border-blue-500 bg-blue-50 text-blue-600",
+  "border-violet-500 bg-violet-50 text-violet-600",
+  "border-amber-500 bg-amber-50 text-amber-600",
+  "border-emerald-500 bg-emerald-50 text-emerald-600",
 ];
 
 export default function Process() {
   return (
-    <section id="process" className="relative scroll-mt-20 px-6 py-28 md:py-36">
-      <div className="section-divider mb-28" />
-
+    <section
+      id="process"
+      className="relative scroll-mt-20 bg-subtle px-6 py-24 md:py-32 lg:px-8"
+    >
       <div className="mx-auto max-w-7xl">
         <motion.div
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
           variants={staggerContainer}
+          className="text-center"
         >
-          <motion.div variants={fadeInUp} className="flex justify-center">
-            <span className="section-label">Methodology</span>
-          </motion.div>
+          <motion.p
+            variants={fadeInUp}
+            className="text-sm font-semibold uppercase tracking-wider text-primary"
+          >
+            Methodology
+          </motion.p>
           <motion.h2
             variants={fadeInUp}
-            className="text-center text-4xl font-extrabold tracking-tight md:text-6xl"
+            className="mt-3 text-3xl font-extrabold tracking-tight text-foreground md:text-5xl"
           >
-            Our <span className="gradient-text">Approach</span>
+            Our Approach
           </motion.h2>
           <motion.p
             variants={fadeInUp}
-            className="mx-auto mt-6 max-w-2xl text-center text-lg text-muted"
+            className="mx-auto mt-5 max-w-2xl text-lg text-muted"
           >
             A proven methodology that balances speed with rigor. Every
             engagement follows this framework — adapted to your context.
@@ -42,74 +47,41 @@ export default function Process() {
         </motion.div>
 
         <motion.div
-          className="relative mt-24"
+          className="relative mt-20"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
           variants={staggerContainer}
         >
           {/* Desktop connecting line */}
-          <div className="absolute left-0 right-0 top-[52px] z-0 hidden md:block">
-            <svg className="h-2 w-full" preserveAspectRatio="none">
-              <line
-                x1="12.5%"
-                y1="50%"
-                x2="87.5%"
-                y2="50%"
-                stroke="url(#process-gradient)"
-                strokeWidth="1"
-                strokeDasharray="6 6"
-              />
-              <defs>
-                <linearGradient id="process-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                  <stop offset="0%" stopColor="rgba(0,212,255,0.4)" />
-                  <stop offset="50%" stopColor="rgba(139,92,246,0.4)" />
-                  <stop offset="100%" stopColor="rgba(0,212,255,0.4)" />
-                </linearGradient>
-              </defs>
-            </svg>
-          </div>
+          <div className="absolute left-[12.5%] right-[12.5%] top-8 hidden h-px bg-border md:block" />
 
           {/* Mobile connecting line */}
-          <div className="absolute bottom-0 left-[35px] top-0 w-px md:hidden">
-            <div className="h-full w-full bg-gradient-to-b from-cyan/20 via-purple/20 to-cyan/20" style={{ maskImage: "linear-gradient(to bottom, transparent, black 10%, black 90%, transparent)" }} />
-          </div>
+          <div className="absolute bottom-0 left-8 top-0 w-px bg-border md:hidden" />
 
-          <div className="grid gap-12 md:grid-cols-4 md:gap-8">
-            {PROCESS_STEPS.map((step, i) => {
-              const colors = stepColors[i];
-              return (
-                <motion.div
-                  key={step.number}
-                  variants={fadeInUp}
-                  className="group relative flex gap-8 md:flex-col md:gap-0 md:text-center"
+          <div className="grid gap-10 md:grid-cols-4 md:gap-8">
+            {PROCESS_STEPS.map((step, i) => (
+              <motion.div
+                key={step.number}
+                variants={fadeInUp}
+                className="relative flex gap-6 md:flex-col md:items-center md:gap-0 md:text-center"
+              >
+                <div
+                  className={`relative z-10 flex h-16 w-16 flex-shrink-0 items-center justify-center rounded-2xl border-2 text-lg font-bold ${stepAccents[i]}`}
                 >
-                  {/* Step node */}
-                  <div className="relative z-10 md:mx-auto">
-                    <div
-                      className={`flex h-[72px] w-[72px] flex-shrink-0 items-center justify-center rounded-2xl border ${colors.ring} bg-surface transition-shadow duration-300 group-hover:shadow-lg group-hover:${colors.glow}`}
-                    >
-                      <span
-                        className={`font-[family-name:var(--font-mono)] text-xl font-bold ${colors.text}`}
-                      >
-                        {step.number}
-                      </span>
-                    </div>
-                    {/* Pulse ring */}
-                    <div
-                      className={`absolute inset-0 rounded-2xl border ${colors.ring} animate-pulse-ring opacity-0 group-hover:opacity-100`}
-                    />
-                  </div>
+                  {step.number}
+                </div>
 
-                  <div className="md:mt-8">
-                    <h3 className="text-xl font-bold">{step.title}</h3>
-                    <p className="mt-3 text-sm leading-relaxed text-muted">
-                      {step.description}
-                    </p>
-                  </div>
-                </motion.div>
-              );
-            })}
+                <div className="md:mt-6">
+                  <h3 className="text-lg font-bold text-foreground">
+                    {step.title}
+                  </h3>
+                  <p className="mt-2 text-sm leading-relaxed text-muted">
+                    {step.description}
+                  </p>
+                </div>
+              </motion.div>
+            ))}
           </div>
         </motion.div>
       </div>

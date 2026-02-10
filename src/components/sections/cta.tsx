@@ -3,65 +3,68 @@
 import { motion } from "framer-motion";
 import { CTA as CTA_DATA } from "@/lib/constants";
 import { fadeInUp, staggerContainer } from "@/lib/animations";
-import GradientOrb from "@/components/decorative/gradient-orb";
-import GridPattern from "@/components/decorative/grid-pattern";
 
 export default function CTA() {
   return (
     <section
       id="contact"
-      className="relative scroll-mt-20 overflow-hidden px-6 py-32 md:py-40"
+      className="relative scroll-mt-20 bg-subtle px-6 py-24 md:py-32 lg:px-8"
     >
-      <div className="section-divider mb-28" />
-
-      <GridPattern className="opacity-40" />
-      <GradientOrb color="cyan" size={600} className="-left-60 top-0" animate />
-      <GradientOrb color="purple" size={600} className="-right-60 bottom-0" animate />
-
-      <motion.div
-        className="relative mx-auto max-w-3xl text-center"
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true }}
-        variants={staggerContainer}
-      >
-        <motion.div variants={fadeInUp} className="flex justify-center">
-          <span className="section-label">Let&apos;s Talk</span>
-        </motion.div>
-
-        <motion.h2
-          variants={fadeInUp}
-          className="text-4xl font-extrabold tracking-tight md:text-6xl"
+      <div className="mx-auto max-w-7xl">
+        <motion.div
+          className="relative overflow-hidden rounded-3xl bg-foreground px-8 py-20 text-center md:px-16"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={staggerContainer}
         >
-          Ready to Close the{" "}
-          <span className="gradient-text">AI Gap?</span>
-        </motion.h2>
+          {/* Subtle gradient decoration */}
+          <div
+            className="pointer-events-none absolute inset-0"
+            style={{
+              background:
+                "radial-gradient(ellipse 60% 50% at 50% 0%, rgba(37,99,235,0.15) 0%, transparent 70%)",
+            }}
+            aria-hidden="true"
+          />
 
-        <motion.p
-          variants={fadeInUp}
-          className="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-muted"
-        >
-          {CTA_DATA.subtitle}
-        </motion.p>
-
-        <motion.div variants={fadeInUp} className="mt-12">
-          <a
-            href={`mailto:${CTA_DATA.contact_email}`}
-            className="glow-button inline-block text-lg"
+          <motion.p
+            variants={fadeInUp}
+            className="relative text-sm font-semibold uppercase tracking-wider text-blue-400"
           >
-            {CTA_DATA.button}
-          </a>
-          <p className="mt-4 font-[family-name:var(--font-mono)] text-xs text-muted">
-            Or email us directly at{" "}
+            Get Started
+          </motion.p>
+
+          <motion.h2
+            variants={fadeInUp}
+            className="relative mt-3 text-3xl font-extrabold tracking-tight text-white md:text-5xl"
+          >
+            {CTA_DATA.headline}
+          </motion.h2>
+
+          <motion.p
+            variants={fadeInUp}
+            className="relative mx-auto mt-5 max-w-xl text-lg leading-relaxed text-dark-muted"
+          >
+            {CTA_DATA.subtitle}
+          </motion.p>
+
+          <motion.div variants={fadeInUp} className="relative mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
             <a
               href={`mailto:${CTA_DATA.contact_email}`}
-              className="text-cyan transition-opacity hover:opacity-80"
+              className="w-full rounded-full bg-white px-8 py-3.5 text-base font-semibold text-foreground shadow-lg transition-all hover:bg-gray-100 sm:w-auto"
             >
-              {CTA_DATA.contact_email}
+              {CTA_DATA.button}
             </a>
-          </p>
+            <a
+              href={`mailto:${CTA_DATA.contact_email}`}
+              className="text-sm font-medium text-dark-muted transition-colors hover:text-white"
+            >
+              {CTA_DATA.contact_email} &rarr;
+            </a>
+          </motion.div>
         </motion.div>
-      </motion.div>
+      </div>
     </section>
   );
 }
